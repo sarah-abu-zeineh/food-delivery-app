@@ -3,7 +3,7 @@ import Header from "./components/header/Header";
 import CreateContainer from "./pages/CreateComponent";
 import MainContainer from "./pages/MainContainer";
 import {AnimatePresence} from 'framer-motion'
-
+ 
 function App() {
     return (
         <AnimatePresence>
