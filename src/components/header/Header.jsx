@@ -1,7 +1,11 @@
 import React from 'react'
+
 import Logo from '../../assets/logo.png'
 import Avatar from '../../assets/avatar.png'
+
 import {MdShoppingBasket} from 'react-icons/md'
+
+import {motion} from 'framer-motion';
 
 const Header = () => {
     return (
@@ -27,7 +31,7 @@ const Header = () => {
                             <p className='text-sm text-white font-semibold'>2</p>
                         </div>
                     </div>
-                    <img src={Avatar} alt='userImage' className='w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl'/>
+                    <motion.img whileTap={{scale:0.6}} src={Avatar} alt='userImage' className=' cursor-pointer w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl'/>
 
                 </div>
                 
