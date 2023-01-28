@@ -6,14 +6,30 @@ import Avatar from '../../assets/avatar.png'
 import {MdShoppingBasket} from 'react-icons/md'
 
 import {motion} from 'framer-motion';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {app} from '../../firebase.config'
+
+import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
+import {async} from '@firebase/util';
+
 
 const Header = () => {
+
+    const firebaseAuth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const logIn = async () => {
+        const response = await signInWithPopup(firebaseAuth, provider);
+        console.log(response);
+
+    }
+
     return (
         <div className='fixed z-50 w-screen p-6 px-16'>
             {/*desktop and tablet */}
             <div className='hidden md:flex h-full w-full items-center justify-between'>
-                <Link to={'/'} className='flex items-center gap-2'>
+                <Link to={'/'}
+                    className='flex items-center gap-2'>
                     <img src={Logo}
                         className='w-10 object-cover'
                         alt='logo'/>
@@ -32,10 +48,18 @@ const Header = () => {
                             <p className='text-sm text-white font-semibold'>2</p>
                         </div>
                     </div>
-                    <motion.img whileTap={{scale:0.6}} src={Avatar} alt='userImage' className=' cursor-pointer w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl'/>
+                    <div className='relative'>
+                        <motion.img whileTap={
+                                {scale: 0.6}
+                            }
+                            src={Avatar}
+                            alt='userImage'
+                            className=' cursor-pointer w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl'
+                            onClick={logIn}/>
 
+                    </div>
                 </div>
-                
+
             </div>
             {/* mobile */}
             <div className='flex md:hidden h-full w-full'></div>
