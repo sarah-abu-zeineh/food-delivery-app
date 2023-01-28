@@ -11,6 +11,9 @@ import {app} from '../../firebase.config'
 
 import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import {async} from '@firebase/util';
+import {useState} from 'react';
+import {useStateValue} from '../../context/stateProvider';
+import {actionType} from '../../context/reducer';
 
 
 const Header = () => {
@@ -18,9 +21,21 @@ const Header = () => {
     const firebaseAuth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
+    const [
+        {
+            user
+        }, dispatch
+    ] = useStateValue();
+
     const logIn = async () => {
-        const response = await signInWithPopup(firebaseAuth, provider);
-        console.log(response);
+        const {
+            user: {
+                refreshToken,
+                providerData
+            }
+        } = await signInWithPopup(firebaseAuth, provider);
+        dispatch({type: actionType.SET_USER, user: providerData[0]})
+        localStorage.setItem('user',JSON.stringify(providerData[0]))
 
     }
 
@@ -52,9 +67,9 @@ const Header = () => {
                         <motion.img whileTap={
                                 {scale: 0.6}
                             }
-                            src={Avatar}
+                            src={user ? user.photoURL:Avatar}
                             alt='userImage'
-                            className=' cursor-pointer w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl'
+                            className=' cursor-pointer w-10 min-w-[40px] h-15 min-h-[40px] drop-shadow-xl rounded-full'
                             onClick={logIn}/>
 
                     </div>
