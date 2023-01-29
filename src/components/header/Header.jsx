@@ -10,7 +10,7 @@ import {Link} from 'react-router-dom';
 import {app} from '../../firebase.config'
 
 import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
-import {async} from '@firebase/util';
+
 import {useState} from 'react';
 import {useStateValue} from '../../context/stateProvider';
 import {actionType} from '../../context/reducer';
@@ -44,13 +44,10 @@ const Header = () => {
 
 
     }
-    const logOut =()=>{
+    const logOut = () => {
         setIsMenu(false);
         localStorage.clear();
-        dispatch({
-            type:actionType.SET_USER,
-            user:null
-        })
+        dispatch({type: actionType.SET_USER, user: null})
     }
 
     return (
@@ -104,7 +101,10 @@ const Header = () => {
                             }
                             alt='userImage'
                             className=' cursor-pointer w-10 min-w-[40px] h-15 min-h-[40px] drop-shadow-xl rounded-full'
-                            onClick={logIn}/> {
+                            onClick={logIn}/>
+                            {
+                                console.log(user)
+                            } {
                         isMenu && (
                             <motion.div initial={
                                     {
@@ -144,20 +144,20 @@ const Header = () => {
             </div>
             {/* mobile */}
             <div className='flex items-center justify-between md:hidden h-full w-full'>
-               
+
                 <div className='relative flex items-center justify-center'>
-                <MdShoppingBasket className='text-textColor text-2xl cursor-pointer'/>
-                <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full flex items-center justify-center bg-cartNumBg'>
-                    <p className='text-sm text-white font-semibold'>2</p>
+                    <MdShoppingBasket className='text-textColor text-2xl cursor-pointer'/>
+                    <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full flex items-center justify-center bg-cartNumBg'>
+                        <p className='text-sm text-white font-semibold'>2</p>
+                    </div>
                 </div>
-            </div>
-            <Link to={'/'}
-            className='flex items-center gap-2'>
-            <img src={Logo}
-                className='w-10 object-cover'
-                alt='logo'/>
-            <p className=' text-headingColor text-xl font-bold '>City</p>
-        </Link>
+                <Link to={'/'}
+                    className='flex items-center gap-2'>
+                    <img src={Logo}
+                        className='w-10 object-cover'
+                        alt='logo'/>
+                    <p className=' text-headingColor text-xl font-bold '>City</p>
+                </Link>
                 <div className='relative'>
                     <motion.img whileTap={
                             {scale: 0.6}
@@ -166,7 +166,7 @@ const Header = () => {
                             user ? user.photoURL : Avatar
                         }
                         alt='userImage'
-                        className=' cursor-pointer w-10 min-w-[40px] h-15 min-h-[40px] drop-shadow-xl rounded-full'
+                        className=' cursor-pointer w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl rounded-full'
                         onClick={logIn}/> {
                     isMenu && (
                         <motion.div initial={
@@ -197,14 +197,14 @@ const Header = () => {
                                 </Link>
                             )
                         }
-                            <ul className='flex flex-col'>  
+                            <ul className='flex flex-col'>
                                 <li className='text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2 '>Home</li>
                                 <li className='text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2 '>Menu</li>
                                 <li className='text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2'>About Us</li>
                                 <li className='text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2'>Service</li>
                             </ul>
                             <p className='m-2 p-2 rounded-md shadow-md flex items-center justify-center bg-slate-200  gap-3 cursor-pointer hover:bg-gray-300 transition-all duration-100 ease-in-out text-textColor text-base'
-                            onClick={logOut}>LogOut
+                                onClick={logOut}>LogOut
                                 <MdLogout/></p>
                         </motion.div>
                     )
