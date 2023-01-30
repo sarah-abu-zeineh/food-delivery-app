@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState} from 'react'
 
-import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
+import {deleteObject, getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
 import {storage} from '../firebase.config'
 
 import {motion} from 'framer-motion';
@@ -14,7 +14,7 @@ import {
     MdAttachMoney
 } from 'react-icons/md'
 import categories from '../utils/data/category.utils';
-import Loader from '../components/loader/loadercomponent';
+import Loader from '../components/loader/loaderComponent';
 import {upload} from '@testing-library/user-event/dist/upload';
 
 const CreateComponent = () => {
@@ -42,7 +42,7 @@ const CreateComponent = () => {
             const uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log(uploadProgress);
         }, (error) => {
-          console.log(1);
+            console.log(1);
             console.log(error);
             setFields(true);
             setMsg('Error while uploading: Try Again 🔔');
@@ -52,23 +52,36 @@ const CreateComponent = () => {
                 setIsLoading(false);
             }, 4000)
         }, () => {
-            getDownloadURL(uploadTask.snapshot.ref).then(downloadUrl=>{
-            setImageAsset(downloadUrl);
-            setIsLoading(false);
-            setFields(true);
-            setMsg('Message uploaded successfully 😊');
-            setAlertStatue('Success');
-            setTimeout(()=>{
-              setFields(false)
+            getDownloadURL(uploadTask.snapshot.ref).then(downloadUrl => {
+                setImageAsset(downloadUrl);
+                setIsLoading(false);
+                setFields(true);
+                setMsg('Message uploaded successfully 😊');
+                setAlertStatue('Success');
+                setTimeout(() => {
+                    setFields(false)
 
-            },400)
-          })
+                }, 4000)
+            })
         })
-    
+
 
     }
 
-    const deleteImage = () => {}
+    const deleteImage = () => {
+        setIsLoading(true);
+        const deleteRef = ref(storage, imageAsset);
+        deleteObject(deleteRef).then(() => {
+            setIsLoading(false);
+            setImageAsset(null);
+            setFields(true);
+            setMsg('Image deleted successfully 😊');
+            setAlertStatue('Success');
+            setTimeout(() => {
+                setFields(false);
+            }, 4000)
+        })
+    }
     const saveDetails = () => {}
 
     return (
@@ -141,9 +154,11 @@ const CreateComponent = () => {
                                     className='w-0 h-0'/>
                             </label>
                         </> : <div className='relative h-full'>
-                            <img src={imageAsset} alt='uploadedImage' className='w-full h-full object-cover'/>
-                            <button type='button' className='absolute bottom-3 right-3 p-3 rounded-full bg-red-500 text-xl cursor-pointer outline hover:shadow-lg duration-500 transition-all ease-in-out'
-                                onClick={deleteImage}><MdDelete className='text-white'/></button>
+                            <img src={imageAsset}
+                                alt='uploadedImage'
+                                className='w-full h-full object-cover'/>
+                            <button type='button' className='absolute bottom-3 right-3 p-3 outline-none rounded-full bg-red-500 text-xl cursor-pointer outline hover:shadow-lg duration-500 transition-all ease-in-out'
+                                onClick={deleteImage}><MdDelete className='text-white '/></button>
                         </div>
                     } </>
                 } </div>
@@ -170,7 +185,7 @@ const CreateComponent = () => {
 
                 <div className='flex items-center w-full'>
                     <button type='button' className='ml-0 md:ml-auto w-full md:w-auto border-none outline-none bg-emerald-500 px-12
-                                                                                                                                    rounded-lg text-white font-semibold py-2'
+                                                                                                                                                                                            rounded-lg text-white font-semibold py-2'
                         onClick={saveDetails}>Save</button>
                 </div>
             </div>
