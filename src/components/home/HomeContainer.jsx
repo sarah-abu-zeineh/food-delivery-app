@@ -30,28 +30,29 @@ const HomeContainer = () => {
                                                                                                                                                                                                                                                             px-4 py-2 rounded-lg hover:shadow-lg transition-all ease-in-out duration-100'>Order Now</button>
             </div>
 
-            <div className='py-2 flex-1 flex items-center relative'>
+            <div className='flex-1 justify-center flex items-center justify-center relative'>
                 <img src={HeroBg}
-                    className='lg:h-490 h-420 w-full lg:w-340  ml-auto'/>
-                <div className='w-full h-full absolute top-0 left-0 flex items-center px-8 gap-2 flex-wrap py-4'>
+                    className='lg:h-520  h-420 w-full lg:w-460  ml-auto'/>
+                <div className=' w-full sm:w-full  z-20 h-full absolute top-0 left-0
+                 flex items-center justify-center  gap-5 flex-wrap py-1 lg:pt-9'>
                     {
                     heroData && heroData.map(plate => <div key={
                             plate.id
                         }
-                        className='w-190 min-w-[190px] p-4
-                                                 bg-cardOverlay backdrop-blur-md rounded-3xl flex items-center justify-center flex-col '>
+                        className='lg:w-190  p-4
+                     bg-cardOverlay  backdrop-blur-md  drop-shadow-lg rounded-3xl flex items-center justify-center flex-col '>
                         <img src={
                                 plate.imgSrc
                             }
                             alt={
                                 plate.name
                             }
-                            className='w-22 -mt-20'/>
-                        <p className='text-xl font-semibold text-textColor mt-3'>
+                            className='lg:w-[120px] w-20 lg:-mt-20 -mt-10'/>
+                        <p className='lg:text-xl text-base font-semibold text-textColor mt-2 lg:mt-4 '>
                             {
                             plate.name
                         }</p>
-                        <p className=' text-sm text-lightTextGray font-semibold my-2 '>
+                        <p className=' text-[12px] lg:text-sm text-lightTextGray font-semibold my-1  lg:mt-3'>
                             {
                             plate.desc
                         }</p>
