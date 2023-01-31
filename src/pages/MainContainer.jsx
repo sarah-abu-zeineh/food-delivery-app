@@ -5,7 +5,9 @@ import HomeContainer from '../components/home/HomeContainer'
 function MainContainer() {
     return (
         <div className='flex w-full h-auto flex-col items-center justify-center'>
-        <HomeContainer/></div>
+        <HomeContainer/>
+        <section className='w-full p-4 '></section>
+        </div>
     )
 }
 
