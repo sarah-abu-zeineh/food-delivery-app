@@ -144,8 +144,8 @@ const CreateComponent = () => {
     }
     const fetchData = async () => {
       await getAllFoodItem().then(data => {
-          console.log(data);
-          dispatch({type: actionType.SET_FOOD_ITEMS, foodItems: data})
+          console.log(data , "sarah");
+          dispatch({type: actionType.SET_FOOD_ITEMS, foodItems:data})
       })
   }
 
