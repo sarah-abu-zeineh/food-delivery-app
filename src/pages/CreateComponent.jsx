@@ -1,7 +1,7 @@
-import React from 'react'
-import {useState} from 'react'
+import React,{useState}  from 'react'
 
 import {deleteObject, getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
+import {saveItem} from '../utils/firbaseFunction.utils';
 import {storage} from '../firebase.config'
 
 import {motion} from 'framer-motion';
@@ -13,10 +13,10 @@ import {
     MdFoodBank,
     MdAttachMoney
 } from 'react-icons/md'
+
 import categories from '../utils/data/category.utils';
 import Loader from '../components/loader/loaderComponent';
-import {upload} from '@testing-library/user-event/dist/upload';
-import saveItem from '../utils/firbaseFunction.utils';
+
 
 const CreateComponent = () => {
     const [title, setTitle] = useState('');
@@ -128,11 +128,11 @@ const CreateComponent = () => {
         }
     }
     const clearData = () => {
-      setTitle('');
-      setImageAsset(null);
-      setCalories('');
-      setPrice('');
-      setCategory('Select Category');
+        setTitle('');
+        setImageAsset(null);
+        setCalories('');
+        setPrice('');
+        setCategory('Select Category');
     }
 
     return (
@@ -236,7 +236,7 @@ const CreateComponent = () => {
 
                 <div className='flex items-center w-full'>
                     <button type='button' className='ml-0 md:ml-auto w-full md:w-auto border-none outline-none bg-emerald-500 px-12
-                                                                                                                                                                                                                                                                                                            rounded-lg text-white font-semibold py-2'
+                                                                                                                                                                                                                                                                                                                                        rounded-lg text-white font-semibold py-2'
                         onClick={saveDetails}>Save</button>
                 </div>
             </div>
