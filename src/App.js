@@ -6,27 +6,32 @@ import MainContainer from "./pages/MainContainer";
 import {AnimatePresence} from 'framer-motion'
 import {useStateValue} from "./context/stateProvider";
 import {async} from "@firebase/util";
-import { getAllFoodItem } from "./utils/firbaseFunction.utils";
-import { useEffect } from "react";
+import {getAllFoodItem} from "./utils/firbaseFunction.utils";
+import {useEffect} from "react";
+import {actionType} from "./context/reducer";
 
 function App() {
     const [
-        {}, dispatch
+        {
+            foodItems
+        }, dispatch
     ] = useStateValue();
+
     const fetchData = async () => {
-        await getAllFoodItem().then(data=>{
+        await getAllFoodItem().then(data => {
             console.log(data);
+            dispatch({type: actionType.SET_FOOD_ITEMS, foodItems: data})
         })
     }
-    useEffect(()=>{
+    useEffect(() => {
         fetchData()
-    },[])
+    }, [])
     return (
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence>
             <div className="w-screen h-auto flex flex-col bg-primary">
                 <Header/>
                 <main className="mt-14 md:mt-20 px-4
-                                         md:px-8 py-4 w-full">
+                                                                 md:px-8 py-4 w-full">
                     <Routes>
                         <Route path='/*'
                             element={<MainContainer/>}/>

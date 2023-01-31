@@ -1,7 +1,7 @@
 import React,{useState}  from 'react'
 
 import {deleteObject, getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
-import {saveItem} from '../utils/firbaseFunction.utils';
+import {getAllFoodItem, saveItem} from '../utils/firbaseFunction.utils';
 import {storage} from '../firebase.config'
 
 import {motion} from 'framer-motion';
@@ -16,6 +16,8 @@ import {
 
 import categories from '../utils/data/category.utils';
 import Loader from '../components/loader/loaderComponent';
+import { useStateValue } from '../context/stateProvider';
+import { actionType } from '../context/reducer';
 
 
 const CreateComponent = () => {
@@ -28,6 +30,11 @@ const CreateComponent = () => {
     const [fields, setFields] = useState(false);
     const [msg, setMsg] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [
+      {
+          foodItems
+      }, dispatch
+  ] = useStateValue();
 
     const loadImage = (e) => {
         setIsLoading(true);
@@ -114,6 +121,7 @@ const CreateComponent = () => {
                     setFields(false);
                     clearData();
                 }, 4000)
+                 fetchData();
 
             }
         } catch (error) {
@@ -134,6 +142,12 @@ const CreateComponent = () => {
         setPrice('');
         setCategory('Select Category');
     }
+    const fetchData = async () => {
+      await getAllFoodItem().then(data => {
+          console.log(data);
+          dispatch({type: actionType.SET_FOOD_ITEMS, foodItems: data})
+      })
+  }
 
     return (
         <div className='w-full h-auto min-h-screen  flex items-center justify-center '>

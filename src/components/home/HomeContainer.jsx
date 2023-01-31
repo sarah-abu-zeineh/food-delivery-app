@@ -3,7 +3,6 @@ import Delivery from '../../assets/delivery.png'
 import HeroBg from '../../assets/heroBg.png'
 import IceCream from '../../assets/i1.png';
 import heroData from '../../utils/data/data.utils';
-// import IceCream  from '../../assets/i1.png';
 
 
 const HomeContainer = () => {
