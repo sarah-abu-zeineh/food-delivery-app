@@ -16,6 +16,7 @@ import {
 import categories from '../utils/data/category.utils';
 import Loader from '../components/loader/loaderComponent';
 import {upload} from '@testing-library/user-event/dist/upload';
+import saveItem from '../utils/firbaseFunction.utils';
 
 const CreateComponent = () => {
     const [title, setTitle] = useState('');
@@ -82,7 +83,57 @@ const CreateComponent = () => {
             }, 4000)
         })
     }
-    const saveDetails = () => {}
+    const saveDetails = () => {
+        setIsLoading(true);
+        try {
+            if (!title || !calories || !imageAsset || !price || !category) {
+                setFields(true);
+                setMsg('Required Fields cant be empty 🔔');
+                setAlertStatue('danger');
+                setTimeout(() => {
+                    setFields(true);
+                    setIsLoading(false);
+                }, 4000)
+            } else {
+                const data = {
+                    id: `${
+                        Date.now()
+                    }`,
+                    title: title,
+                    imageUrl: imageAsset,
+                    category: category,
+                    price: price,
+                    calories: calories
+                }
+                saveItem(data);
+                setIsLoading(false);
+                setFields(true);
+                setMsg('Data uploaded successfully 😊');
+                setAlertStatue('Success');
+                setTimeout(() => {
+                    setFields(false);
+                    clearData();
+                }, 4000)
+
+            }
+        } catch (error) {
+            console.log(error);
+            setFields(true);
+            setMsg('Error while uploading: Try Again 🔔');
+            setAlertStatue('danger');
+            setTimeout(() => {
+                setFields(true);
+                setIsLoading(false);
+            }, 4000)
+        }
+    }
+    const clearData = () => {
+      setTitle('');
+      setImageAsset(null);
+      setCalories('');
+      setPrice('');
+      setCategory('Select Category');
+    }
 
     return (
         <div className='w-full h-auto min-h-screen  flex items-center justify-center '>
@@ -185,7 +236,7 @@ const CreateComponent = () => {
 
                 <div className='flex items-center w-full'>
                     <button type='button' className='ml-0 md:ml-auto w-full md:w-auto border-none outline-none bg-emerald-500 px-12
-                                                                                                                                                                                            rounded-lg text-white font-semibold py-2'
+                                                                                                                                                                                                                                                                                                            rounded-lg text-white font-semibold py-2'
                         onClick={saveDetails}>Save</button>
                 </div>
             </div>
