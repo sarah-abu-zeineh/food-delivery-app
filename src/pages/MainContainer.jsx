@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React,{useState} from 'react'
 
 import HomeContainer from '../components/home/HomeContainer'
 
@@ -7,8 +7,7 @@ import {motion} from 'framer-motion'
 import {MdChevronLeft, MdChevronRight} from 'react-icons/md'
 import RowContainer from '../components/row/rowContainer.component'
 import {useStateValue} from '../context/stateProvider'
-import {useState} from 'react'
-import {useEffect} from 'react'
+import Menu from '../components/menu/menuComponent.component'
 
 function MainContainer() {
     const [
@@ -57,8 +56,8 @@ function MainContainer() {
                     data={
                         foodItems ?. filter(item => item.category === 'fruits')
                     }/>
-
             </section>
+            <Menu/>
         </div>
     )
 }
