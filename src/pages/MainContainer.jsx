@@ -8,6 +8,7 @@ import {MdChevronLeft, MdChevronRight} from 'react-icons/md'
 import RowContainer from '../components/row/rowContainer.component'
 import {useStateValue} from '../context/stateProvider'
 import Menu from '../components/menu/menuComponent.component'
+import CartContainer from '../components/cart/cartContainer.component'
 
 function MainContainer() {
     const [
@@ -58,6 +59,7 @@ function MainContainer() {
                     }/>
             </section>
             <Menu/>
+            <CartContainer/>
         </div>
     )
 }

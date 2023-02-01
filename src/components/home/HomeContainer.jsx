@@ -31,7 +31,7 @@ const HomeContainer = () => {
             <div className='flex-1 justify-center flex items-center justify-center relative'>
                 <img src={HeroBg}
                     className='lg:h-520  h-420 w-full lg:w-460  ml-auto'/>
-                <div className=' w-full sm:w-full  z-20 h-full absolute top-0 left-0
+                <div className=' w-full sm:w-full h-full absolute top-0 left-0
                      flex items-center justify-center  gap-5 flex-wrap py-1 lg:pt-9'>
                     {
                     heroData && heroData.map(plate => <div key={
