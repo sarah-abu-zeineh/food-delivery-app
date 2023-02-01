@@ -18,12 +18,12 @@ const Menu = () => {
                     {
                     categories && categories.map(category => (
                         <motion.div 
-                        whileTap={{scale:0.75}} 
+                        whileTap={{scale:0.86}} 
                         key={category.id} 
                         onClick={()=>setFilter(category.urlParamName)}
                         className={`group ${filter===category.urlParamName?'bg-red-600':'bg-card'} 
                         w-24 min-w-[94px] cursor-pointer drop-shadow-xl
-                        rounded-lg flex flex-col items-center justify-center h-28 gap-3   hover:bg-red-600`}>
+                        rounded-lg flex flex-col items-center justify-center h-28 gap-3 hover:bg-red-600`}>
                             <div className={`w-10 h-10 rounded-full shadow-lg ${filter===category.urlParamName?'bg-white':'bg-red-600'}
                              group-hover:bg-white flex items-center justify-center`}>
                                 <IoFastFood className={` ${filter===category.urlParamName?'text-textColor':'text-white'}
