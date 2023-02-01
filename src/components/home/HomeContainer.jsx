@@ -22,8 +22,8 @@ const HomeContainer = () => {
                 </p>
                 <p className='md:w-[80%] text-base text-textColor text-center md:text-left'>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                    enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                    enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
                 <button type='button' className='md:w-auto bg-gradient-to-br from-orange-400 to-orange-500 w-full
                                                                                                                                                                                                                                                             px-4 py-2 rounded-lg hover:shadow-lg transition-all ease-in-out duration-100'>Order Now</button>
             </div>
@@ -32,7 +32,7 @@ const HomeContainer = () => {
                 <img src={HeroBg}
                     className='lg:h-520  h-420 w-full lg:w-460  ml-auto'/>
                 <div className=' w-full sm:w-full  z-20 h-full absolute top-0 left-0
-                 flex items-center justify-center  gap-5 flex-wrap py-1 lg:pt-9'>
+                     flex items-center justify-center  gap-5 flex-wrap py-1 lg:pt-9'>
                     {
                     heroData && heroData.map(plate => <div key={
                             plate.id
