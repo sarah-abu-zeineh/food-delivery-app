@@ -19,35 +19,41 @@ function MainContainer() {
     ] = useStateValue();
 
     const [scrollValue, setScrollValue] = useState(0);
+    const [value, setValue] = useState(0);
 
-    useEffect(() => {}, [scrollValue])
+    const setScrollingValue = (offsetScrollValue) => {
+        setValue(value+1);
+        setScrollValue(offsetScrollValue);
+    }
+
     return (
         <div className='flex w-full h-auto flex-col '>
             <HomeContainer/>
             <section className='w-ful my-6'>
                 <div className='w-full flex items-center justify-between'>
                     <p className='text-2xl font-semibold capitalize relative text-headingColor before:absolute
-                        before:rounded-lg before:content before:w-32 before:h-1 before:-bottom-2 before:left-0
-                        before:bg-gradient-to-tr from-orange-400 to-orange-600  transition ease-in-out
-                        duration-200'>Our Fresh & healthy fruits</p>
+                                                before:rounded-lg before:content before:w-32 before:h-1 before:-bottom-2 before:left-0
+                                                before:bg-gradient-to-tr from-orange-400 to-orange-600  transition ease-in-out
+                                                duration-200'>Our Fresh & healthy fruits</p>
                     <div className='hidden md:flex gap-3  items-center'>
                         <motion.div whileTap={
                                 {scale: 0.75}
                             }
                             onClick={
-                                () => setScrollValue(-200)
+                                () => setScrollingValue(-200)
                             }
                             className='w-8 h-8 rounded-lg bg-orange-300 flex hover:bg-orange-500 cursor-pointer hover:shadow-lg transition-all duration-200 ease-in-out items-center justify-center'><MdChevronLeft className='text-lg text-white'/></motion.div>
                         <motion.div whileTap={
                                 {scale: 0.75}
                             }
                             onClick={
-                                () => setScrollValue(200)
+                                () => setScrollingValue(200)
                             }
                             className='w-8 h-8 rounded-lg bg-orange-300 flex hover:bg-orange-500 cursor-pointer hover:shadow-lg transition-all duration-200 ease-in-out items-center justify-center'><MdChevronRight className='text-lg text-white'/></motion.div>
                     </div>
                 </div>
-                <RowContainer scrollValue={scrollValue} flag={true}
+                <RowContainer scrollValue={scrollValue} value={value}
+                    flag={true}
                     data={
                         foodItems ?. filter(item => item.category === 'fruits')
                     }/>

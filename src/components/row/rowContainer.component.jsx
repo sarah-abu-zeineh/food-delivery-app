@@ -4,13 +4,13 @@ import {motion} from 'framer-motion'
 import {useEffect} from 'react';
 import {useRef} from 'react';
 
-const RowContainer = ({flag, data, scrollValue}) => {
+const RowContainer = ({flag, data, scrollValue,value}) => {
         const rowContainer = useRef(null);
 
         useEffect(() => {
             rowContainer.current.scrollLeft += scrollValue;
             console.log(rowContainer.current.scrollLeft += scrollValue);
-        }, [scrollValue])
+        }, [value])
 
         return (<div ref={rowContainer}
             className={
