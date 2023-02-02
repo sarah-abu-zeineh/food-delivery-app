@@ -65,7 +65,6 @@ const Menu = () => {
                         </motion.div>
                     ))
                 } </div>
-                {console.log(filter)}
                 <div className='w-full'>
                     <RowContainer flag={false}  data={
                         foodItems ?. filter(item => item.category === filter)

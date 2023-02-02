@@ -11,7 +11,6 @@ const getAllFoodItem = async () => {
     const items = await getDocs(
         query(collection(fireStore,'foodItems'),orderBy('id','desc'))
     )
-    console.log(items);
     return items.docs.map((doc)=>doc.data())
 }
 export {

@@ -13,13 +13,13 @@ import {actionType} from "./context/reducer";
 function App() {
     const [
         {
-            foodItems
+            foodItems,
+            cartItems
         }, dispatch
     ] = useStateValue();
-
+    console.log(cartItems, "sara");
     const fetchData = async () => {
         await getAllFoodItem().then(data => {
-            console.log(data);
             dispatch({type: actionType.SET_FOOD_ITEMS, foodItems: data})
         })
     }
@@ -31,7 +31,7 @@ function App() {
             <div className="w-screen h-auto flex flex-col bg-primary">
                 <Header/>
                 <main className="mt-14 md:mt-20 px-4
-                                                                 md:px-8 py-4 w-full">
+                                                                                         md:px-8 py-4 w-full">
                     <Routes>
                         <Route path='/*'
                             element={<MainContainer/>}/>

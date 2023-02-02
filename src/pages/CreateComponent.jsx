@@ -110,6 +110,7 @@ const CreateComponent = () => {
                     imageUrl: imageAsset,
                     category: category,
                     price: price,
+                    qty:1,
                     calories: calories
                 }
                 saveItem(data);
