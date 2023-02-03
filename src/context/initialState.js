@@ -9,6 +9,7 @@ const initialState = {
     user: userInfo,
     foodItems: null,
     cartShow: false,
-    cartItems:cartInfo
+    cartItems: userInfo,
+    totalFlag: false,
 };
 export default initialState

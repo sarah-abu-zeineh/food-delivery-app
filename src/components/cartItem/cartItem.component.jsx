@@ -8,17 +8,26 @@ import {useEffect} from 'react';
 
 
 const CartItem = ({item}) => {
-    const [qty, setQty] = useState(1);
-    const [newItem, setNewItem] = useState(item)
+    const [qty, setQty] = useState(item.qty);
+    const [newItem, setNewItem] = useState(item);
+
     const [
         {
-            cartItems
+            cartItems,
+            totalFlag
         }, dispatch
     ] = useStateValue()
 
     const cartDispatch = () => {
+        
+        dispatch({type: actionType.SET_CART_ITEMS, cartItems: newItem})
         localStorage.setItem('cartItems', JSON.stringify(newItem))
-        dispatch({type:actionType.SET_CART_ITEMS,cartItems:newItem})
+
+        console.log(localStorage.getItem('cartItems'));
+        dispatch({
+            type: actionType.SET_FLAG,
+            totalFlag: !totalFlag
+        })
     }
 
     useEffect(() => {
@@ -27,24 +36,25 @@ const CartItem = ({item}) => {
 
     const updateQty = (method, id) => {
         if (method === 'add') {
-            console.log(qty, 'before');
             setQty(qty + 1);
             cartItems.map(item => {
                 if (item.id === id) {
                     item.qty += 1;
                 }
             })
-            
+
         }
         if (method === 'minus') {
-            console.log(qty, 'before');
             setQty(qty - 1);
-            console.log(qty);
             cartItems.map(item => {
                 if (item.id === id) {
                     item.qty -= 1;
                 }
+
             })
+        }
+        if (qty === 1) {
+            setNewItem(cartItems.filter(() => item.id === id))
         }
         cartDispatch()
     }

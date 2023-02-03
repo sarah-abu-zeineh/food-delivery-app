@@ -1,7 +1,7 @@
 import React,{useState}  from 'react'
 
 import {deleteObject, getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
-import {getAllFoodItem, saveItem} from '../utils/firbaseFunction.utils';
+import {getAllFoodItem, saveItem} from '../utils/firebaseFunction.utils';
 import {storage} from '../firebase.config'
 
 import {motion} from 'framer-motion';
@@ -45,13 +45,9 @@ const CreateComponent = () => {
             imageFile.name
         }`);
         const uploadTask = uploadBytesResumable(storageRef, imageFile);
-        console.log(uploadTask);
         uploadTask.on('state_changed', (snapshot) => {
             const uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log(uploadProgress);
         }, (error) => {
-            console.log(1);
-            console.log(error);
             setFields(true);
             setMsg('Error while uploading: Try Again 🔔');
             setAlertStatue('danger');
@@ -126,7 +122,6 @@ const CreateComponent = () => {
 
             }
         } catch (error) {
-            console.log(error);
             setFields(true);
             setMsg('Error while uploading: Try Again 🔔');
             setAlertStatue('danger');
@@ -145,7 +140,6 @@ const CreateComponent = () => {
     }
     const fetchData = async () => {
       await getAllFoodItem().then(data => {
-          console.log(data , "sarah");
           dispatch({type: actionType.SET_FOOD_ITEMS, foodItems:data})
       })
   }

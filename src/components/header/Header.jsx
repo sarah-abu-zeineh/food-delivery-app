@@ -14,6 +14,7 @@ import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import {useState} from 'react';
 import {useStateValue} from '../../context/stateProvider';
 import {actionType} from '../../context/reducer';
+import { useEffect } from 'react';
 
 
 const Header = () => {
@@ -57,6 +58,7 @@ const Header = () => {
             cartShow: !cartShow
         })
     }
+    
 
     return (
         <div className='fixed z-50 w-screen p-3 px-4 md:p-5 md:px-10 bg-primary'>
