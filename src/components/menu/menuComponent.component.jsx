@@ -10,8 +10,7 @@ const Menu = () => {
     const [
         {
             foodItems,
-            dispatch
-        }
+        },dispatch
     ] = useStateValue();
 
     return (
