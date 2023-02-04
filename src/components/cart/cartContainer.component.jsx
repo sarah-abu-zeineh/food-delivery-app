@@ -87,7 +87,7 @@ const CartContainer = () => {
             {
             cartItems && cartItems.length > 0 ? <div className='w-full h-full bg-cartBg rounded-t-[2rem] flex flex-col justify-between'>
                 {/* Cart Item's Section  */}
-                <div className='w-full h-490 mb-3 md:h-42 px-6 py-10 flex flex-col gap-3 overflow-y-scroll scrollbar-none '>
+                <div className='w-full h-490 mb-3 md:h-340 px-6 py-6 flex flex-col gap-3 overflow-y-scroll scrollbar-none '>
                     {/* Cart Item  */}
                     {
                     cartItems && cartItems.map(item => <CartItem key={
