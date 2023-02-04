@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import EmptyCart from '../../assets/emptyCart.PNG'
 
@@ -9,8 +9,6 @@ import {motion} from 'framer-motion'
 import {useStateValue} from '../../context/stateProvider'
 import {actionType} from '../../context/reducer'
 import CartItem from '../cartItem/cartItem.component'
-import {useEffect} from 'react'
-import { json } from 'react-router-dom'
 
 const CartContainer = () => {
     const [
@@ -42,7 +40,7 @@ const CartContainer = () => {
         })
     }
     const clearOrder = () => {
-        localStorage.setItem('cartItems',JSON.stringify([]));
+        localStorage.setItem('cartItems', JSON.stringify([]));
         dispatch({type: actionType.SET_CART_ITEMS, cartItems: []});
     }
 
@@ -66,7 +64,7 @@ const CartContainer = () => {
                 }
             }
             className='w-full md:w-375 h-screen bg-white drop-shadow-md flex flex-col
-                                                                                                                                                                        fixed top-0 right-0 z-[101]'>
+                                                                                                                                                                                        fixed top-0 right-0 z-[101]'>
             <div className='w-full flex items-center cursor-pointer justify-between p-4'>
                 <motion.div whileTap={
                         {scale: .75}
@@ -81,7 +79,7 @@ const CartContainer = () => {
                     }
                     onClick={clearOrder}
                     className='flex items-center justify-between gap-2 p-1 px-2 my-2 bg-gray-100
-                                                                                                                                                                                                                                                                    rounded-md hover:shadow-md cursor-pointer text-textColor text-base'>
+                                                                                                                                                                                                                                                                                            rounded-md hover:shadow-md cursor-pointer text-textColor text-base'>
                     Clear<RiRefreshFill/>{" "}</motion.p>
             </div>
             {
@@ -120,12 +118,12 @@ const CartContainer = () => {
                         }
                         type='button'
                         className='w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2
-                                                                                                                            hover:shadow-lg '>Check Out</motion.button> : <motion.button whileTap={
+                                                                                                                                                        hover:shadow-lg '>Check Out</motion.button> : <motion.button whileTap={
                             {scale: 0.8}
                         }
                         type='button'
                         className='w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2
-                                                                                                                             hover:shadow-lg '>Login Check Out</motion.button>
+                                                                                                                                                         hover:shadow-lg '>Login Check Out</motion.button>
                 } </div>
             </div> : <div className='w-full h-full flex flex-col items-center justify-center gap-6'>
                 <img src={EmptyCart}
