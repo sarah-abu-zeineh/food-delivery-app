@@ -4,7 +4,7 @@ You can clone this project by using this [Link](https://github.com/saraAAZ/food-
 
 It's a full stack food delivery application using Reactjs, Firebase, Framer motion, Tailwind css. This projects allows to the user to add new items and to maintain all the things over the firestore cloud database
 
-##Project Style
+## Project Style
 
 ![image](https://user-images.githubusercontent.com/70340194/225764788-9d522764-c4d5-4860-bf8e-6ea6cb34a054.png)
 ![image](https://user-images.githubusercontent.com/70340194/225764863-ad147e87-e20d-46c8-b88c-ef8f82cae849.png)
