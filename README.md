@@ -18,6 +18,7 @@ It's a full stack food delivery application using Reactjs, Firebase, Framer moti
 - `#999ea7`
 
 **Fonts : **
+
 `'Poppins'`, `sans-serif`
 ## Project techniques :
 - use Routes.
